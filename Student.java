@@ -30,5 +30,49 @@ public class Student {
         }
     }
 
-    
+    public static boolean studentExist(String studentCode){
+        for (Student student:students) {
+            if(student.studentCode.equals(studentCode)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void editStudent(String studentCode, String password, String name, String lastName, String id, String birthYear, String address){
+        if(Student.studentExist(studentCode)){
+            Student student = searchStudent(studentCode);
+            if(!password.equals("-")){
+                student.password = new String(password);
+            }
+            if(!name.equals("-")){
+                student.name = new String(name);
+            }
+            if(!lastName.equals("-")){
+                student.lastName = new String(lastName);
+            }
+            if(!id.equals("-")){
+                student.id = new String(id);
+            }
+            if(!birthYear.equals("-")){
+                student.birthYear = Integer.parseInt(birthYear);
+            }
+            if(!address.equals("-")){
+                student.address = new String(address);
+            }
+
+        }
+        else {
+            System.out.println("not-found");
+        }
+    }
+
+    private static Student searchStudent(String studentCode){
+        for (Student student:students) {
+            if(student.studentCode.equals(studentCode)){
+                return student;
+            }
+        }
+        return null;
+    }
 }
