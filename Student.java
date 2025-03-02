@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Student {
     private String studentCode;
@@ -8,6 +9,7 @@ public class Student {
     private String id;
     private int birthYear;
     private String address;
+    private ArrayList<Book> books;
     private static ArrayList<Student> students = new ArrayList<Student>();
 
     private Student(String studentCode, String password, String name, String lastName, String id, int birthYear, String address){
@@ -18,12 +20,14 @@ public class Student {
         this.id = new String(id);
         this.birthYear = birthYear;
         this.address = new String(address);
+        this.books = new ArrayList<Book>();
 
     }
 
     public static void addStudent(String studentCode, String password, String name, String lastName, String id, int birthYear, String address){
         if(!studentExist(studentCode)){
             students.add(new Student(studentCode, password, name, lastName, id, birthYear, address));
+            System.out.println("success");
         }
         else {
             System.out.println("duplicate-id");
@@ -60,13 +64,34 @@ public class Student {
             if(!address.equals("-")){
                 student.address = new String(address);
             }
+            System.out.println("success");
 
         }
         else {
             System.out.println("not-found");
         }
     }
-/////////////////////////////////////////
+
+    public static void removeStudent(String studentCode){
+        if(studentExist(studentCode)){
+            Iterator<Student> studentIterator = students.iterator();
+            while (studentIterator.hasNext()){
+                Student student = studentIterator.next();
+                if(student.studentCode.equals(studentCode)){
+                    if (student.books.size() == 0){
+                        studentIterator.remove();
+                        System.out.println("success");
+                    }
+                    else {
+                        System.out.println("not-allowed");
+                    }
+                }
+            }
+        }
+        else {
+            System.out.println("not-found");
+        }
+    }
     private static Student searchStudent(String studentCode){
         for (Student student:students) {
             if(student.studentCode.equals(studentCode)){
@@ -75,4 +100,6 @@ public class Student {
         }
         return null;
     }
+
+
 }
