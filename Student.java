@@ -66,7 +66,7 @@ public class Student {
             System.out.println("not-found");
         }
     }
-
+/////////////////////////////////////////
     private static Student searchStudent(String studentCode){
         for (Student student:students) {
             if(student.studentCode.equals(studentCode)){
