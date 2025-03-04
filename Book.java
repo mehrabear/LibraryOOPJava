@@ -55,6 +55,13 @@ public class Book {
         }
     }
 
+    public boolean canBorrow(){
+        if (this.numberOfCopies - this.numberBorrowed > 0){
+            return true;
+        }
+        return false;
+    }
+
 
 
 

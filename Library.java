@@ -173,4 +173,91 @@ public class Library {
         }
         System.out.println("not-found");
     }
+
+    public void borrow(String id, String password, String libraryId, String objectId, String date, String hour){
+        if(Student.studentExist(id)){
+            if(bookExist(objectId)){
+                if(Student.passwordCheck(id, password)){
+                    if(bookSearch(objectId).canBorrow() && Student.canBorrow()){
+                        System.out.println("success");
+                    }
+                    else {
+                        System.out.println("not-allowed");
+                    }
+                }
+                else {
+                    System.out.println("invalid-pass");
+                }
+            }
+            else if(thesisExist(objectId)){
+                if(Student.passwordCheck(id, password)){
+                    if(!thesisSearch(objectId).getBorrowed() && Student.canBorrow()){
+                        System.out.println("success");
+                    }
+                    else {
+                        System.out.println("not-allowed");
+                    }
+                }
+                else {
+                    System.out.println("invalid-pass");
+                }
+            }
+            else {
+                System.out.println("not-found");
+            }
+        }
+        else if(Staff.staffExist(id)){
+            if(bookExist(objectId)){
+                if(Staff.passwordCheck(id, password)){
+                    if(bookSearch(objectId).canBorrow() && Staff.canBorrow()){
+                        System.out.println("success");
+                    }
+                    else {
+                        System.out.println("not-allowed");
+                    }
+                }
+                else {
+                    System.out.println("invalid-pass");
+                }
+            }
+            else if(thesisExist(objectId)){
+                if(Staff.passwordCheck(id, password)){
+                    if(!thesisSearch(objectId).getBorrowed() && Staff.canBorrow()){
+                        System.out.println("success");
+                    }
+                    else {
+                        System.out.println("not-allowed");
+                    }
+                }
+                else {
+                    System.out.println("invalid-pass");
+                }
+            }
+            else {
+                System.out.println("not-found");
+            }
+
+        }
+        else{
+            System.out.println("not-found");
+        }
+    }
+
+    private Book bookSearch(String id){
+        for (Book book:books) {
+            if (book.getId().equals(id)){
+                return book;
+            }
+        }
+        return null;
+    }
+
+    private Thesis thesisSearch(String id){
+        for (Thesis thesis:thesisess) {
+            if (thesis.getId().equals(id)){
+                return thesis;
+            }
+        }
+        return null;
+    }
 }

@@ -101,5 +101,10 @@ public class Staff{
         return null;
     }
 
-
+    public static boolean passwordCheck(String id, String password){
+        if(password.equals(searchStaff(id).password)){
+            return true;
+        }
+        return false;
+    }
 }

@@ -101,5 +101,10 @@ public class Student {
         return null;
     }
 
-
+    public static boolean passwordCheck(String id, String password){
+        if(password.equals(searchStudent(id).password)){
+            return true;
+        }
+        return false;
+    }
 }
