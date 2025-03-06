@@ -9,7 +9,7 @@ public class Student {
     private String id;
     private int birthYear;
     private String address;
-    private ArrayList<Book> books;
+    private ArrayList<ArrayList<String>> objects = new ArrayList<ArrayList<String>>();
     private static ArrayList<Student> students = new ArrayList<Student>();
 
     private Student(String studentCode, String password, String name, String lastName, String id, int birthYear, String address){
@@ -20,8 +20,6 @@ public class Student {
         this.id = new String(id);
         this.birthYear = birthYear;
         this.address = new String(address);
-        this.books = new ArrayList<Book>();
-
     }
 
     public static void addStudent(String studentCode, String password, String name, String lastName, String id, int birthYear, String address){
@@ -78,7 +76,7 @@ public class Student {
             while (studentIterator.hasNext()){
                 Student student = studentIterator.next();
                 if(student.studentCode.equals(studentCode)){
-                    if (student.books.size() == 0){
+                    if (student.objects.size() == 0){
                         studentIterator.remove();
                         System.out.println("success");
                     }
@@ -103,6 +101,13 @@ public class Student {
 
     public static boolean passwordCheck(String id, String password){
         if(password.equals(searchStudent(id).password)){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean canBorrow(String id){
+        if(searchStudent(id).objects.size() < 3){
             return true;
         }
         return false;

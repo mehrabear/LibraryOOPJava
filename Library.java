@@ -178,8 +178,9 @@ public class Library {
         if(Student.studentExist(id)){
             if(bookExist(objectId)){
                 if(Student.passwordCheck(id, password)){
-                    if(bookSearch(objectId).canBorrow() && Student.canBorrow()){
+                    if(bookSearch(objectId).canBorrow() && Student.canBorrow(id)){
                         System.out.println("success");
+
                     }
                     else {
                         System.out.println("not-allowed");
@@ -191,7 +192,7 @@ public class Library {
             }
             else if(thesisExist(objectId)){
                 if(Student.passwordCheck(id, password)){
-                    if(!thesisSearch(objectId).getBorrowed() && Student.canBorrow()){
+                    if(!thesisSearch(objectId).getBorrowed() && Student.canBorrow(id)){
                         System.out.println("success");
                     }
                     else {
@@ -209,7 +210,7 @@ public class Library {
         else if(Staff.staffExist(id)){
             if(bookExist(objectId)){
                 if(Staff.passwordCheck(id, password)){
-                    if(bookSearch(objectId).canBorrow() && Staff.canBorrow()){
+                    if(bookSearch(objectId).canBorrow() && Staff.canBorrow(id)){
                         System.out.println("success");
                     }
                     else {
@@ -222,7 +223,7 @@ public class Library {
             }
             else if(thesisExist(objectId)){
                 if(Staff.passwordCheck(id, password)){
-                    if(!thesisSearch(objectId).getBorrowed() && Staff.canBorrow()){
+                    if(!thesisSearch(objectId).getBorrowed() && Staff.canBorrow(id)){
                         System.out.println("success");
                     }
                     else {

@@ -9,7 +9,7 @@ public class Staff{
     private String id;
     private int birthYear;
     private String address;
-    private ArrayList<Book> books;
+    private ArrayList<ArrayList<String>> objects = new ArrayList<ArrayList<String>>();
     private static ArrayList<Staff> staffs = new ArrayList<Staff>();
 
     private Staff(String staffCode, String password, String name, String lastName, String id, int birthYear, String address){
@@ -20,7 +20,6 @@ public class Staff{
         this.id = new String(id);
         this.birthYear = birthYear;
         this.address = new String(address);
-        this.books = new ArrayList<Book>();
 
     }
 
@@ -78,7 +77,7 @@ public class Staff{
             while (staffIterator.hasNext()){
                 Staff staff = staffIterator.next();
                 if(staff.staffCode.equals(staffCode)){
-                    if (staff.books.size() == 0){
+                    if (staff.objects.size() == 0){
                         staffIterator.remove();
                         System.out.println("success");
                     }
@@ -103,6 +102,13 @@ public class Staff{
 
     public static boolean passwordCheck(String id, String password){
         if(password.equals(searchStaff(id).password)){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean canBorrow(String id){
+        if(searchStaff(id).objects.size() < 5){
             return true;
         }
         return false;
