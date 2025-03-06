@@ -47,7 +47,9 @@ public class Thesis {
         return this.borrowed;
     }
 
-
+    public void borrow(){
+        this.borrowed = true;
+    }
 
 
 

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class Staff{
@@ -112,5 +113,8 @@ public class Staff{
             return true;
         }
         return false;
+    }
+    public static void borrow(String id, String libraryId, String objectId){
+        searchStaff(id).objects.add(new ArrayList<String>(Arrays.asList(libraryId, objectId)));
     }
 }

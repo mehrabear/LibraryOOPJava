@@ -62,6 +62,9 @@ public class Book {
         return false;
     }
 
+    public void borrow(){
+        this.numberBorrowed ++;
+    }
 
 
 

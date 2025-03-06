@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class Student {
@@ -111,5 +112,10 @@ public class Student {
             return true;
         }
         return false;
+    }
+
+
+    public static void borrow(String id, String libraryId, String objectId){
+        searchStudent(id).objects.add(new ArrayList<String>(Arrays.asList(libraryId, objectId)));
     }
 }
