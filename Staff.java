@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Iterator;
 
 public class Staff{
@@ -9,6 +10,7 @@ public class Staff{
     private String lastName;
     private String id;
     private int birthYear;
+    private int penalty;
     private String address;
     private ArrayList<ArrayList<String>> objects = new ArrayList<ArrayList<String>>();
     private static ArrayList<Staff> staffs = new ArrayList<Staff>();
@@ -21,6 +23,7 @@ public class Staff{
         this.id = id;
         this.birthYear = birthYear;
         this.address = address;
+        this.penalty = 0;
 
     }
 
@@ -118,5 +121,35 @@ public class Staff{
             }
         }
         return false;
+    }
+
+    public static void returnObject(String id, String libraryId, String objectId, String date, String hour, char objectType){
+        int min = -1;
+        int min_index = -1;
+        int i = 0;
+
+        for(ArrayList<String> object:searchStaff(id).objects){
+            if(object.get(0).equals(libraryId) && object.get(1).equals(objectId)){
+                if(min == -1){
+                    min = Library.diffrenceHour(object.get(2), object.get(3), date, hour);
+                    min_index = i;
+                }
+                else if(min > Library.diffrenceHour(object.get(2), object.get(3), date, hour) && Library.diffrenceHour(object.get(2), object.get(3), date, hour) > 0){
+                    min_index = i;
+                    min = Library.diffrenceHour(object.get(2), object.get(3), date, hour);
+                }
+            }
+            i ++;
+        }
+        searchStaff(id).objects.remove(min_index);
+
+        if(objectType == 'B' && min-(14*24) > 0){
+            searchStaff(id).penalty += (min-(14*24)) * 100;
+        }
+        else if(objectType == 'T' && min-(10*24) > 0){
+            searchStaff(id).penalty += (min-(10*24)) * 100;
+        }
+
+
     }
 }

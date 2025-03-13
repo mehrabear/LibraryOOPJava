@@ -63,6 +63,8 @@ public class Book {
         this.numberBorrowed ++;
     }
 
-
+    public void returnBook(){
+        this.numberBorrowed --;
+    }
 
 }

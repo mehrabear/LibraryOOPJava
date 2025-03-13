@@ -258,7 +258,8 @@ public class Library {
                 if(Student.passwordCheck(id, password)){
                     if(Student.objectExist(id, libraryId, objectId)){
                         System.out.println("success");
-                        /// returning proccess
+                        Student.returnObject(id, libraryId, objectId, date, hour, 'B');
+                        bookSearch(objectId).returnBook();
                     }
                     else {
                         System.out.println("not-found");
@@ -272,7 +273,8 @@ public class Library {
                 if(Student.passwordCheck(id, password)){
                     if(Student.objectExist(id, libraryId, objectId)){
                         System.out.println("success");
-                        /// returning proccess
+                        Student.returnObject(id, libraryId, objectId, date, hour, 'T');
+                        thesisSearch(objectId).returnThesis();
                     }
                     else {
                         System.out.println("not-found");
@@ -291,7 +293,8 @@ public class Library {
                 if(Staff.passwordCheck(id, password)){
                     if(Staff.objectExist(id, libraryId, objectId)){
                         System.out.println("success");
-                        /// returning proccess
+                        Staff.returnObject(id, libraryId, objectId, date, hour, 'B');
+                        bookSearch(objectId).returnBook();
                     }
                     else {
                         System.out.println("not-found");
@@ -305,7 +308,8 @@ public class Library {
                 if(Staff.passwordCheck(id, password)){
                     if(Staff.objectExist(id, libraryId, objectId)){
                         System.out.println("success");
-                        /// returning proccess
+                        Staff.returnObject(id, libraryId, objectId, date, hour, 'T');
+                        thesisSearch(objectId).returnThesis();
                     }
                     else {
                         System.out.println("not-found");

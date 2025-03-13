@@ -9,6 +9,7 @@ public class Student {
     private String lastName;
     private String id;
     private int birthYear;
+    private int penalty ;
     private String address;
     private ArrayList<ArrayList<String>> objects = new ArrayList<ArrayList<String>>();
     private static ArrayList<Student> students = new ArrayList<Student>();
@@ -21,6 +22,7 @@ public class Student {
         this.id = id;
         this.birthYear = birthYear;
         this.address = address;
+        this.penalty = 0;
     }
 
     public static void addStudent(String studentCode, String password, String name, String lastName, String id, int birthYear, String address){
@@ -123,7 +125,7 @@ public class Student {
     }
 
 
-    public static void returnObject(String id, String libraryId, String objectId, String date, String hour){
+    public static void returnObject(String id, String libraryId, String objectId, String date, String hour, char objectType){
         int min = -1;
         int min_index = -1;
         int i = 0;
@@ -134,13 +136,24 @@ public class Student {
                         min = Library.diffrenceHour(object.get(2), object.get(3), date, hour);
                         min_index = i;
                     }
-                    else if(min < Library.diffrenceHour(object.get(2), object.get(3), date, hour)){
+                    else if(min > Library.diffrenceHour(object.get(2), object.get(3), date, hour) && Library.diffrenceHour(object.get(2), object.get(3), date, hour) > 0){
                         min_index = i;
                         min = Library.diffrenceHour(object.get(2), object.get(3), date, hour);
                     }
             }
             i ++;
         }
+        searchStudent(id).objects.remove(min_index);
+
+        if(objectType == 'B' && min-(10*24) > 0){
+            searchStudent(id).penalty += (min-(10*24)) * 50;
+        }
+        else if(objectType == 'T' && min-(7*24) > 0){
+            searchStudent(id).penalty += (min-(7*24)) * 50;
+        }
+
+
+
 
 
     }
