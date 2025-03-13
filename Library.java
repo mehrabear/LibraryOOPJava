@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 
@@ -345,6 +346,38 @@ public class Library {
             }
         }
         return null;
+    }
+
+    public static void search(String str){
+        ArrayList<String> matchs = new ArrayList<>();
+
+        for (Library library:libs) {
+            for(Book book:library.books){
+                if(book.matches(str)){
+                    matchs.add(book.getId());
+                }
+            }
+            for (Thesis thesis: library.thesisess) {
+                if(thesis.matches(str)){
+                    matchs.add(thesis.getId());
+                }
+            }
+        }
+
+        Collections.sort(matchs);
+
+        if(matchs.size() == 0){
+            System.out.print("no-found");
+            return;
+        }
+
+        for (int i = 0; i < matchs.size(); i++) {
+            System.out.print(matchs.get(i));
+            if(i < matchs.size() - 1){
+                System.out.print("|");
+            }
+        }
+        System.out.println();
     }
 
     public static int diffrenceHour(String h1, String d1, String h2, String d2){

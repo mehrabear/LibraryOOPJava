@@ -67,4 +67,15 @@ public class Book {
         this.numberBorrowed --;
     }
 
+    public boolean matches(String str){
+        if(this.title.toLowerCase().contains(str.toLowerCase())){
+            return true;
+        } else if (this.author.toLowerCase().contains(str.toLowerCase())) {
+            return true;
+        }else if (this.publisher.toLowerCase().contains(str.toLowerCase())) {
+            return true;
+        }
+        else {return false;}
+    }
+
 }

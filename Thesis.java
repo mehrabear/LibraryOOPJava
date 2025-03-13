@@ -55,5 +55,16 @@ public class Thesis {
         this.borrowed = false;
     }
 
+    public boolean matches(String str){
+        if(this.title.toLowerCase().contains(str.toLowerCase())){
+            return true;
+        } else if (this.studentName.toLowerCase().contains(str.toLowerCase())) {
+            return true;
+        }else if (this.professorName.toLowerCase().contains(str.toLowerCase())) {
+            return true;
+        }
+        else {return false;}
+    }
+
 
 }
