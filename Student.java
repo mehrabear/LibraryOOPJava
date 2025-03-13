@@ -109,7 +109,7 @@ public class Student {
     }
 
 
-    public static void borrow(String id, String libraryId, String objectId){
-        searchStudent(id).objects.add(new ArrayList<String>(Arrays.asList(libraryId, objectId)));
+    public static void borrow(String id, String libraryId, String objectId, String date, String hour){
+        searchStudent(id).objects.add(new ArrayList<String>(Arrays.asList(libraryId, objectId, date, hour)));
     }
 }

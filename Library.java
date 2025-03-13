@@ -181,7 +181,7 @@ public class Library {
                     if(bookSearch(objectId).canBorrow() && Student.canBorrow(id)){
                         System.out.println("success");
                         bookSearch(objectId).borrow();
-                        Student.borrow(id, libraryId, objectId);
+                        Student.borrow(id, libraryId, objectId, date, hour);
                     }
                     else {
                         System.out.println("not-allowed");
@@ -196,7 +196,7 @@ public class Library {
                     if(!thesisSearch(objectId).getBorrowed() && Student.canBorrow(id)){
                         System.out.println("success");
                         thesisSearch(objectId).borrow();
-                        Student.borrow(id, libraryId, objectId);
+                        Student.borrow(id, libraryId, objectId, date, hour);
                     }
                     else {
                         System.out.println("not-allowed");
@@ -216,7 +216,7 @@ public class Library {
                     if(bookSearch(objectId).canBorrow() && Staff.canBorrow(id)){
                         System.out.println("success");
                         bookSearch(objectId).borrow();
-                        Staff.borrow(id, libraryId, objectId);
+                        Staff.borrow(id, libraryId, objectId, date, hour);
                     }
                     else {
                         System.out.println("not-allowed");
@@ -231,7 +231,7 @@ public class Library {
                     if(!thesisSearch(objectId).getBorrowed() && Staff.canBorrow(id)){
                         System.out.println("success");
                         thesisSearch(objectId).borrow();
-                        Staff.borrow(id, libraryId, objectId);
+                        Staff.borrow(id, libraryId, objectId, date, hour);
                     }
                     else {
                         System.out.println("not-allowed");

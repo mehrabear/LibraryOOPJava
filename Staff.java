@@ -108,7 +108,7 @@ public class Staff{
     public static boolean canBorrow(String id){
         return searchStaff(id).objects.size() < 5;
     }
-    public static void borrow(String id, String libraryId, String objectId){
-        searchStaff(id).objects.add(new ArrayList<String>(Arrays.asList(libraryId, objectId)));
+    public static void borrow(String id, String libraryId, String objectId, String date, String hour){
+        searchStaff(id).objects.add(new ArrayList<String>(Arrays.asList(libraryId, objectId, date, hour)));
     }
 }
