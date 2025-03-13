@@ -251,6 +251,79 @@ public class Library {
         }
     }
 
+    public void returnBorrow(String id, String password, String libraryId, String objectId, String date, String hour){
+        if(Student.studentExist(id)){
+            if(bookExist(objectId)){
+                if(Student.passwordCheck(id, password)){
+                    if(Student.objectExist(id, libraryId, objectId)){
+                        System.out.println("success");
+                        /// returning proccess
+                    }
+                    else {
+                        System.out.println("not-found");
+                    }
+                }
+                else {
+                    System.out.println("invalid-pass");
+                }
+            }
+            else if(thesisExist(objectId)){
+                if(Student.passwordCheck(id, password)){
+                    if(Student.objectExist(id, libraryId, objectId)){
+                        System.out.println("success");
+                        /// returning proccess
+                    }
+                    else {
+                        System.out.println("not-found");
+                    }
+                }
+                else {
+                    System.out.println("invalid-pass");
+                }
+            }
+            else {
+                System.out.println("not-found");
+            }
+        }
+        else if(Staff.staffExist(id)){
+            if(bookExist(objectId)){
+                if(Staff.passwordCheck(id, password)){
+                    if(Staff.objectExist(id, libraryId, objectId)){
+                        System.out.println("success");
+                        /// returning proccess
+                    }
+                    else {
+                        System.out.println("not-found");
+                    }
+                }
+                else {
+                    System.out.println("invalid-pass");
+                }
+            }
+            else if(thesisExist(objectId)){
+                if(Staff.passwordCheck(id, password)){
+                    if(Staff.objectExist(id, libraryId, objectId)){
+                        System.out.println("success");
+                        /// returning proccess
+                    }
+                    else {
+                        System.out.println("not-found");
+                    }
+                }
+                else {
+                    System.out.println("invalid-pass");
+                }
+            }
+            else {
+                System.out.println("not-found");
+            }
+
+        }
+        else{
+            System.out.println("not-found");
+        }
+    }
+
     private Book bookSearch(String id){
         for (Book book:books) {
             if (book.getId().equals(id)){

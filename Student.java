@@ -112,4 +112,13 @@ public class Student {
     public static void borrow(String id, String libraryId, String objectId, String date, String hour){
         searchStudent(id).objects.add(new ArrayList<String>(Arrays.asList(libraryId, objectId, date, hour)));
     }
+
+    public static boolean objectExist(String id, String libraryId, String objectId){
+        for(ArrayList<String> object:searchStudent(id).objects){
+            if(object.get(0).equals(libraryId) && object.get(1).equals(objectId)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
