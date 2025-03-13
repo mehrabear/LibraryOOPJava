@@ -14,13 +14,13 @@ public class Staff{
     private static ArrayList<Staff> staffs = new ArrayList<Staff>();
 
     private Staff(String staffCode, String password, String name, String lastName, String id, int birthYear, String address){
-        this.staffCode = new String(staffCode);
-        this.password = new String(password);
-        this.name = new String(name);
-        this.lastName = new String(lastName);
-        this.id = new String(id);
+        this.staffCode = staffCode;
+        this.password = password;
+        this.name = name;
+        this.lastName = lastName;
+        this.id = id;
         this.birthYear = birthYear;
-        this.address = new String(address);
+        this.address = address;
 
     }
 
@@ -47,22 +47,22 @@ public class Staff{
         if(staffExist(staffCode)){
             Staff staff = searchStaff(staffCode);
             if(!password.equals("-")){
-                staff.password = new String(password);
+                staff.password = password;
             }
             if(!name.equals("-")){
-                staff.name = new String(name);
+                staff.name = name;
             }
             if(!lastName.equals("-")){
-                staff.lastName = new String(lastName);
+                staff.lastName = lastName;
             }
             if(!id.equals("-")){
-                staff.id = new String(id);
+                staff.id = id;
             }
             if(!birthYear.equals("-")){
                 staff.birthYear = Integer.parseInt(birthYear);
             }
             if(!address.equals("-")){
-                staff.address = new String(address);
+                staff.address = address;
             }
             System.out.println("success");
 
@@ -78,7 +78,7 @@ public class Staff{
             while (staffIterator.hasNext()){
                 Staff staff = staffIterator.next();
                 if(staff.staffCode.equals(staffCode)){
-                    if (staff.objects.size() == 0){
+                    if (staff.objects.isEmpty()){
                         staffIterator.remove();
                         System.out.println("success");
                     }
@@ -102,17 +102,11 @@ public class Staff{
     }
 
     public static boolean passwordCheck(String id, String password){
-        if(password.equals(searchStaff(id).password)){
-            return true;
-        }
-        return false;
+        return password.equals(searchStaff(id).password);
     }
 
     public static boolean canBorrow(String id){
-        if(searchStaff(id).objects.size() < 5){
-            return true;
-        }
-        return false;
+        return searchStaff(id).objects.size() < 5;
     }
     public static void borrow(String id, String libraryId, String objectId){
         searchStaff(id).objects.add(new ArrayList<String>(Arrays.asList(libraryId, objectId)));

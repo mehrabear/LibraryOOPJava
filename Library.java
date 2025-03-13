@@ -12,11 +12,11 @@ public class Library {
     private static ArrayList<Library> libs = new ArrayList<Library>();
 
     private Library(String id, String name, int year, int tableCount, String address){
-        this.id = new String(id);
-        this.name = new String(name);
+        this.id = id;
+        this.name = name;
         this.year = year;
         this.tableCount = tableCount;
-        this.address = new String(address);
+        this.address = address;
     }
     public static void addLibrary(String id, String name, int year, int tableCount, String address){
         if(!libraryExist(id)){
@@ -31,7 +31,7 @@ public class Library {
         if(Category.categoryExist(categoryId)){
             if(bookExist(id)){
                 System.out.println("success");
-                this.books.add(new Book(id, title, author, publisher, publishYear, numberOfCopies, Category.catssearch(categoryId),this.id));
+                this.books.add(new Book(id, title, author, publisher, publishYear, numberOfCopies, Category.catsSearch(categoryId),this.id));
             }
             else{
                 System.out.println("duplicate-id");
@@ -44,7 +44,7 @@ public class Library {
 
     public void editBook(String id, String title, String author, String publisher, String publishYear, String numberOfCopies,String categoryId){
         for(Book book: this.books){
-            if((book.getId().equals(id))&&(!categoryId.equals("-") && Category.categoryExist(categoryId))){
+            if((book.getId().equals(id))&&(categoryId.equals("-") || Category.categoryExist(categoryId))){
                 if(!title.equals("-")){
                     book.setTitle(title);
                 }
@@ -73,7 +73,7 @@ public class Library {
         if(Category.categoryExist(categoryId)){
             if(thesisExist(id)){
                 System.out.println("success");
-                this.thesisess.add(new Thesis(id, title, studentName, professorName, year, Category.catssearch(categoryId)));
+                this.thesisess.add(new Thesis(id, title, studentName, professorName, year, Category.catsSearch(categoryId)));
             }
             else{
                 System.out.println("duplicate-id");
@@ -86,7 +86,7 @@ public class Library {
 
     public void editThesis(String id, String title, String studentName, String professorName, String year, String categoryId){
         for(Thesis thesis: this.thesisess){
-            if((thesis.getId().equals(id))&&((categoryId.equals("-")) || (!categoryId.equals("-") && Category.categoryExist(categoryId)))){
+            if((thesis.getId().equals(id))&&((categoryId.equals("-")) ||  Category.categoryExist(categoryId))){
                 if(!title.equals("-")){
                     thesis.setTitle(title);
                 }
@@ -109,7 +109,7 @@ public class Library {
     }
 
     public String getId(){
-        return new String(this.id);
+        return this.id;
     }
     public static boolean libraryExist(String id){
         for (Library lib: libs) {

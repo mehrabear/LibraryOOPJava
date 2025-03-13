@@ -10,10 +10,10 @@ public class Book {
 
 
     public Book(String id, String title, String author, String publisher, int publishYear, int numberOfCopies,Category category, String libraryId){
-        this.id = new String(id);
-        this.title = new String(title);
-        this.author = new String(author);
-        this.publisher = new String(author);
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.publisher = author;
         this.publishYear = publishYear;
         this.numberOfCopies = numberOfCopies;
         this.category = category;
@@ -22,7 +22,7 @@ public class Book {
     }
 
     public String getId(){
-        return new String(this.id);
+        return this.id;
     }
 
 
@@ -30,15 +30,15 @@ public class Book {
         return this.numberBorrowed;
     }
     public void setTitle(String title){
-        this.title = new String(title);
+        this.title = title;
     }
 
     public void setAuthor(String author){
-        this.author = new String(author);
+        this.author = author;
     }
 
     public void setPublisher(String publisher){
-        this.publisher = new String(publisher);
+        this.publisher = publisher;
     }
 
     public void setPublishYear(int publishYear){
@@ -51,15 +51,12 @@ public class Book {
 
     public void setCategory(String categoryId){
         if(Category.categoryExist(categoryId)){
-            this.category = Category.catssearch(categoryId);
+            this.category = Category.catsSearch(categoryId);
         }
     }
 
     public boolean canBorrow(){
-        if (this.numberOfCopies - this.numberBorrowed > 0){
-            return true;
-        }
-        return false;
+        return this.numberOfCopies - this.numberBorrowed > 0;
     }
 
     public void borrow(){

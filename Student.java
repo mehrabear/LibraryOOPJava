@@ -14,13 +14,13 @@ public class Student {
     private static ArrayList<Student> students = new ArrayList<Student>();
 
     private Student(String studentCode, String password, String name, String lastName, String id, int birthYear, String address){
-        this.studentCode = new String(studentCode);
-        this.password = new String(password);
-        this.name = new String(name);
-        this.lastName = new String(lastName);
-        this.id = new String(id);
+        this.studentCode = studentCode;
+        this.password = password;
+        this.name = name;
+        this.lastName = lastName;
+        this.id = id;
         this.birthYear = birthYear;
-        this.address = new String(address);
+        this.address = address;
     }
 
     public static void addStudent(String studentCode, String password, String name, String lastName, String id, int birthYear, String address){
@@ -46,22 +46,22 @@ public class Student {
         if(Student.studentExist(studentCode)){
             Student student = searchStudent(studentCode);
             if(!password.equals("-")){
-                student.password = new String(password);
+                student.password = password;
             }
             if(!name.equals("-")){
-                student.name = new String(name);
+                student.name = name;
             }
             if(!lastName.equals("-")){
-                student.lastName = new String(lastName);
+                student.lastName = lastName;
             }
             if(!id.equals("-")){
-                student.id = new String(id);
+                student.id = id;
             }
             if(!birthYear.equals("-")){
                 student.birthYear = Integer.parseInt(birthYear);
             }
             if(!address.equals("-")){
-                student.address = new String(address);
+                student.address = address;
             }
             System.out.println("success");
 
@@ -77,7 +77,7 @@ public class Student {
             while (studentIterator.hasNext()){
                 Student student = studentIterator.next();
                 if(student.studentCode.equals(studentCode)){
-                    if (student.objects.size() == 0){
+                    if (student.objects.isEmpty()){
                         studentIterator.remove();
                         System.out.println("success");
                     }
@@ -101,17 +101,11 @@ public class Student {
     }
 
     public static boolean passwordCheck(String id, String password){
-        if(password.equals(searchStudent(id).password)){
-            return true;
-        }
-        return false;
+        return password.equals(searchStudent(id).password);
     }
 
     public static boolean canBorrow(String id){
-        if(searchStudent(id).objects.size() < 3){
-            return true;
-        }
-        return false;
+        return searchStudent(id).objects.size() < 3;
     }
 
 

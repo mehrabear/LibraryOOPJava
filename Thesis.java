@@ -39,7 +39,7 @@ public class Thesis {
 
     public void setCategory(String categoryId){
         if(Category.categoryExist(categoryId)){
-            this.category = Category.catssearch(categoryId);
+            this.category = Category.catsSearch(categoryId);
         }
     }
 
@@ -57,7 +57,7 @@ public class Thesis {
 
 
 
-    
+
 
 
 }

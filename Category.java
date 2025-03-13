@@ -6,8 +6,8 @@ public class Category {
     private static ArrayList<Category> cats= new ArrayList<Category>();
 
     private Category(String id, String name){
-        this.id = new String(id);
-        this.name = new String(name);
+        this.id = id;
+        this.name = name;
 
     }
 
@@ -22,18 +22,18 @@ public class Category {
     }
 
     public String getId(){
-        return new String(this.id);
+        return this.id;
     }
     public static boolean categoryExist(String id){
-        for(int i = 0; i < cats.size(); i++){
-            if(cats.get(i).id.equals(id)){
+        for (Category cat : cats) {
+            if (cat.id.equals(id)) {
                 return true;
             }
         }
         return false;
     }
 
-    public static Category catssearch(String id){
+    public static Category catsSearch(String id){
         for(Category category:cats){
             if(category.id.equals(id)){
                 return category;
