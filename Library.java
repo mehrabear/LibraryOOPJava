@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 public class Library {
@@ -340,5 +341,30 @@ public class Library {
             }
         }
         return null;
+    }
+
+    public static int diffrenceHour(String h1, String d1, String h2, String d2){
+        int[] hour1 = new int[2];
+        int[] hour2 = new int[2];
+        hour1[0] = Integer.parseInt(h1.split(":")[0]);
+        hour1[1] = Integer.parseInt(h1.split(":")[1]);
+        hour2[0] = Integer.parseInt(d1.split(":")[0]);
+        hour2[1] = Integer.parseInt(d1.split(":")[1]);
+        int[] date1 = new int[3];
+        int[] date2 = new int[3];
+        date1[0] = Integer.parseInt(d1.split("-")[0]);
+        date1[1] = Integer.parseInt(d1.split("-")[1]);
+        date1[2] = Integer.parseInt(d1.split("-")[2]);
+        date2[0] = Integer.parseInt(d2.split("-")[0]);
+        date2[1] = Integer.parseInt(d2.split("-")[1]);
+        date2[2] = Integer.parseInt(d2.split("-")[2]);
+
+        Date start = new Date(date1[0] - 1900,date1[1],date1[2],hour1[0],hour1[1], 0);
+        Date end = new Date(date2[0] - 1900,date2[1],date2[2],hour2[0],hour2[1], 0);
+
+        long diff = end.getTime() - start.getTime();
+
+        diff = diff / (24 * 60 * 60 * 1000);
+        return (int) diff;
     }
 }
