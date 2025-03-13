@@ -121,4 +121,27 @@ public class Student {
         }
         return false;
     }
+
+
+    public static void returnObject(String id, String libraryId, String objectId, String date, String hour){
+        int min = -1;
+        int min_index = -1;
+        int i = 0;
+
+        for(ArrayList<String> object:searchStudent(id).objects){
+            if(object.get(0).equals(libraryId) && object.get(1).equals(objectId)){
+                    if(min == -1){
+                        min = Library.diffrenceHour(object.get(2), object.get(3), date, hour);
+                        min_index = i;
+                    }
+                    else if(min < Library.diffrenceHour(object.get(2), object.get(3), date, hour)){
+                        min_index = i;
+                        min = Library.diffrenceHour(object.get(2), object.get(3), date, hour);
+                    }
+            }
+            i ++;
+        }
+
+
+    }
 }
